@@ -28,6 +28,6 @@ function send() {
     send();
   };
   // window.setInterval(f, 60000 * 5);
-  window.setInterval(f, 6000);
+  window.setInterval(f, 11000);
   f();
 })();

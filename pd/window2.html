@@ -22,8 +22,21 @@
   </head>
   <body>
     <div id="img_container">
-      <img id="fried" src="../media/img1.webp" />
+      <img id="fried" src="../media/img2.webp" />
     </div>
-    <script src="../index.js"></script>
+    <script>
+      var percentage = 100;
+      let fryingAmount = 20;
+      var f = function () {
+        // do something
+        console.log(`frying...${percentage}%`);
+        var img = document.getElementById("fried");
+        img.style.filter = `saturate(${percentage}%)`;
+        percentage += fryingAmount;
+      };
+      // window.setInterval(f, 60000 * 5);
+      window.setInterval(f, 11000);
+      f();
+    </script>
   </body>
 </html>
