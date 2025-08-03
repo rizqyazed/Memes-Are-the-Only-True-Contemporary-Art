@@ -1,33 +1,26 @@
-$ = document.getElementById.bind(document);
+const express = require("express");
+const app = express();
+const port = 3000;
+const path = require("path");
+var bodyParser = require("body-parser");
 
-var ws = new WebSocket("ws://localhost:9001/");
+app.use(express.static(path.join(__dirname, "media")));
+app.use(express.static(path.join(__dirname, "pd")));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-ws.onopen = function () {
-  console.log("connected!");
-};
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
-ws.onclose = function () {
-  console.log("connection lost");
-};
+app.get("/pd/window.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "./pd/window.html"));
+});
 
-/* when enter is pressed send the message to Pd */
-function send() {
-  ws.send(["socket"]);
-  console.log("sending socket signal");
-}
+app.get("/pd/window2.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "./pd/window2.html"));
+});
 
-(function () {
-  var percentage = 100;
-  let fryingAmount = 20;
-  var f = function () {
-    // do something
-    console.log(`frying...${percentage}%`);
-    var img = document.getElementById("fried");
-    img.style.filter = `saturate(${percentage}%)`;
-    percentage += fryingAmount;
-    send();
-  };
-  // window.setInterval(f, 60000 * 5);
-  window.setInterval(f, 11000);
-  f();
-})();
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
