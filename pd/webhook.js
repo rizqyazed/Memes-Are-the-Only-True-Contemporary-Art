@@ -18,7 +18,7 @@ function send() {
 
 (function () {
   var percentage = 100;
-  let fryingAmount = 20;
+  let fryingAmount = 5;
   var f = function () {
     // do something
     console.log(`frying...${percentage}%`);
