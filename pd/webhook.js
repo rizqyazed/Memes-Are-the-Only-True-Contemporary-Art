@@ -27,7 +27,7 @@ function send() {
     percentage += fryingAmount;
     send();
   };
-  // window.setInterval(f, 60000 * 5);
-  window.setInterval(f, 11000);
+  window.setInterval(f, 60000 * 5);
+  // window.setInterval(f, 11000);
   f();
 })();
